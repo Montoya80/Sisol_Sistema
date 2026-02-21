@@ -12,7 +12,8 @@ function Sync-Git {
     if (-not $repoStatus) {
         Write-Host "El repositorio no existe en GitHub. Intentando crear..." -ForegroundColor Yellow
         gh repo create Sisol_Sistema --public --source=. --remote=origin --push
-    } else {
+    }
+    else {
         # Agregar cambios
         git add .
         
@@ -20,8 +21,9 @@ function Sync-Git {
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         git commit -m "Auto-sync: $timestamp"
         
-        # Empujar cambios
+        # Empujar cambios a ambas ramas
         git push origin master
+        git push origin main
     }
     
     Write-Host "Sincronización completada con éxito." -ForegroundColor Green
