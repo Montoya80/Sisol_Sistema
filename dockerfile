@@ -29,7 +29,12 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 RUN mkdir -p .next && chown nextjs:nodejs .next
 
 USER nextjs
+
 EXPOSE 3000
 
-# TRIGGER: 2026-02-21-00-24
-CMD ["sh", "-c", "echo 'Sisol_Sistema Starting... Port: 3000'; node server.js"]
+# HEALTHCHECK para que Dokploy sepa cuando la app está lista
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+  CMD node -e "fetch('http://localhost:3000').then(r => process.exit(r.ok ? 0 : 1))" || exit 1
+
+# TRIGGER: 2026-02-21-14-25
+CMD ["sh", "-c", "echo 'Sisol_Sistema Iniciando en Puerto: 3000...'; node server.js"]
