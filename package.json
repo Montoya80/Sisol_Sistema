@@ -2,11 +2,15 @@
   "name": "sisol-sistema",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync": "powershell -ExecutionPolicy Bypass -File ./sync.ps1"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.15.0",
