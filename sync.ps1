@@ -21,7 +21,7 @@ function Sync-Git {
         git commit -m "Auto-sync: $timestamp"
         
         # Empujar cambios
-        git push origin main
+        git push origin master
     }
     
     Write-Host "Sincronización completada con éxito." -ForegroundColor Green
