@@ -21,9 +21,9 @@ function Sync-Git {
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         git commit -m "Auto-sync: $timestamp"
         
-        # Empujar cambios a ambas ramas
-        git push origin master
+        # Empujar cambios a ambas ramas (priorizando main para Dokploy)
         git push origin main
+        git push origin master
     }
     
     Write-Host "Sincronización completada con éxito." -ForegroundColor Green
