@@ -3,7 +3,7 @@
 FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm install
 
 FROM base AS builder
 WORKDIR /app
@@ -30,5 +30,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# FORCE_TRIGGER: 2026-02-20-23-37
+# FORCE_TRIGGER: 2026-02-21-00-00
 CMD ["node", "server.js"]
